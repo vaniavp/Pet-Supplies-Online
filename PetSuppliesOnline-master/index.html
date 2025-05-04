@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PET SUPPLIES ONLINE 🐶🐱</title>
+    <link rel="icon" href="icono.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+	    margin: 0;
+	    padding: 0;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+	    overflow-x: hidden;
+        }
+body, html {
+overflow-x: hidden;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.mascotas-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.mascotas-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    z-index: 1;
+    padding: 0.5rem;
+}
+
+.mascotas-content.show {
+    display: block;
+}
+
+.mascota-item {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.mascota-item:hover {
+    background-color: #f0f0f0;
+}
+
+	.header-banner {
+    		background-color: white;
+    		background-image: url('/api/placeholder/1200/200');
+    		background-size: cover;
+    		background-position: center;
+    		width: 100vw;
+    		position: relative;
+    		margin-left: calc(50% - 50vw);
+    		text-align: center;
+    		transition: transform 0.3s ease; /* Animación para suavizar el cambio */
+		
+	}
+
+        nav {
+            background-color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #4a90e2;
+        }
+
+        .search-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 1.1rem;
+        }
+
+        .filters-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-button.active {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .logo {
+            max-width: 200px;
+            margin: 1rem auto;
+        }
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste adaptable */
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 100vw;
+    margin: 0 auto;
+}
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .discounted-price {
+            color: #ff4444;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .brands-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .brands-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            z-index: 1;
+            padding: 0.5rem;
+        }
+
+        .brands-content.show {
+            display: block;
+        }
+
+        .brand-item {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        .brand-item:hover {
+            background-color: #f0f0f0;
+        }
+	.footer {
+            background-color: #f8f4e9;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .footer-logo {
+            width: 200px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h3 {
+            color: #1a472a;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-section p {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: #1a472a;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #4a90e2;
+        }
+
+        .subscription-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subscription-title {
+            color: #1a472a;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subscription-price {
+            font-size: 3rem;
+            color: #4a90e2;
+            margin: 1rem 0;
+        }
+
+        .subscription-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .subscription-features li {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+
+        .subscribe-button {
+            background: #1a472a;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .subscribe-button:hover {
+            background: #2c5d3f;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .store-button {
+            height: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-logo {
+                margin: 0 auto 1rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+
+@media (min-width: 1024px) {
+    .header-banner {
+        transform: scale(1.05); /* Incremento de tamaño del 20% */
+    }
+}
+
+@media (min-width: 1440px) {
+    .header-banner {
+        transform: scale(1.035); /* Incremento de tamaño hasta el 50% */
+    }
+}
+
+/* Mantener el tamaño en 100vw para tamaños de pantalla menores */
+@media (max-width: 1023px) {
+    .header-banner {
+        transform: scale(1.16);
+    }
+}
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#" onclick="resetFilters()">Home</a></li>
+<li>
+    <div class="mascotas-dropdown">
+        <a onclick="toggleMascotas()">Mascotas</a>
+        <div id="mascotasDropdown" class="mascotas-content">
+            <div class="mascota-item" onclick="filterProducts('perro')">Perros</div>
+            <div class="mascota-item" onclick="filterProducts('gato')">Gatos</div>
+            <div class="mascota-item" onclick="filterProducts('ave')">Aves</div>
+            <div class="mascota-item" onclick="filterProducts('hamster')">Hámsteres</div>
+            <div class="mascota-item" onclick="filterProducts('serpiente')">Serpientes</div>
+            <div class="mascota-item" onclick="filterProducts('pez')">Peces</div>
+            <!-- Agrega más opciones según sea necesario -->
+        </div>
+    </div>
+</li>
+	
+
+            <li><div class="brands-dropdown">
+                <a onclick="toggleBrands()">Marcas</a>
+                <div id="brandsDropdown" class="brands-content">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div></li>
+
+            <li><a onclick="showDiscountedOnly()">Ofertas</a></li>
+            <li><a href="conocenos.html">Conócenos</a></li>
+            <li><a href="suscripciones.html">Suscripciones</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="header-banner">
+        <div class="header-banner-content">
+        <img src="banner.png" alt="Logo" class="header-banner">
+    </div>
+    </div>
+
+    <div class="search-section">
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Buscar productos..." id="searchInput">
+        </div>
+        <div class="filters-container" id="activeFilters">
+            <!-- Filtros activos se mostrarán aquí -->
+        </div>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+        <!-- Los productos se cargarán dinámicamente -->
+    </div>
+
+    <script>
+	// Limpiar filtros
+	function clearAllFilters() {
+    		activeFilters = {
+       			category: null,
+        		brand: null,
+       			discounted: false,
+       			searchTerm: ''
+   		};
+   		applyFilters();
+    		updateActiveFiltersDisplay();
+	}
+
+        // Datos de ejemplo
+        const products = [
+            {
+                id: 1,
+                name: 'Oferta de Lanzamiento Perros Cachorros (Ricocan CyL Cachorros Razas M y G 3Kg + Dragpharma Pichichi + Bolsas limon 8x15pcs)',
+                price: 70.70,
+		discountedPrice: 49.90,
+                category: 'perro',
+                brand: 'Varias marcas',
+                image: 'productos/combo1.png',
+                hasDiscount: true
+            },
+            {
+                id: 2,
+                name: 'Oferta de Lanzamiento Perros Adultos (Ricocan Adulto Multisabores 3Kg + Dragpharma Pichichi + Bolsas limon 8x15pcs)',
+                price: 70.70,
+		discountedPrice: 49.90,
+                category: 'perro',
+                brand: 'Varias marcas',
+                image: 'productos/combo2.png',
+                hasDiscount: true
+            },
+            {
+                id: 3,
+                name: 'Oferta de Lanzamiento Gatos (Arena Klinkat 5Kg + Canbo Cuidado De Esterilizados 1KG + Churu Sabor Atún 60Gr)',
+                price: 71.70,
+		discountedPrice: 49.90,
+                category: 'gato',
+                brand: 'Varias marcas',
+                image: 'productos/combo3.png',
+                hasDiscount: true
+            },
+            {
+                id: 4,
+                name: 'Ricocan Carne Y Leche Cachorros Razas Medianas Y Grandes Alimento Seco Perro 1Kg (S/13.90 x KG)',
+                price: 13.90,
+                category: 'perro',
+                brand: 'Ricocan',
+                image: 'productos/1.png',
+                hasDiscount: false
+            },
+            {
+                id: 5,
+                name: 'Ricocan Carne Y Leche Cachorros Razas Medianas Y Grandes Alimento Seco Perro 3Kg (S/11.30 x KG)',
+                price: 33.90,
+                category: 'perro',
+                brand: 'Ricocan',
+                image: 'productos/1.png',
+                hasDiscount: false
+            },
+            {
+                id: 6,
+                name: 'Ricocan Carne Y Leche Cachorros Razas Medianas Y Grandes Alimento Seco Perro 15Kg (S/8.59 x KG)',
+                price: 128.90,
+                category: 'perro',
+                brand: 'Ricocan',
+                image: 'productos/1.png',
+                hasDiscount: false
+            },
+            {
+                id: 7,
+                name: 'Ricocan Adulto Multisabores Todas Las Razas 1Kg (S/13.90 x KG)',
+                price: 13.90,
+                category: 'perro',
+                brand: 'Ricocan',
+                image: 'productos/2.png',
+                hasDiscount: false
+            },
+            {
+                id: 8,
+                name: 'Ricocan Adulto Multisabores Todas Las Razas 3Kg (S/11.30 x KG)',
+                price: 33.90,
+                category: 'perro',
+                brand: 'Ricocan',
+                image: 'productos/2.png',
+                hasDiscount: false
+            },
+            {
+                id: 9,
+                name: 'Ricocan Adulto Multisabores Todas Las Razas 8Kg (S/9.74 x KG)',
+                price: 77.90,
+                category: 'perro',
+                brand: 'Ricocan',
+                image: 'productos/2.png',
+                hasDiscount: false
+            },
+            {
+                id: 10,
+                name: 'Ricocan Adulto Multisabores Todas Las Razas 15Kg (S/8.46 x KG)',
+                price: 126.90,
+                category: 'perro',
+                brand: 'Ricocan',
+                image: 'productos/2.png',
+                hasDiscount: false
+            },
+            {
+                id: 11,
+                name: 'Canbo Dog Food Cachorros Sb Pollo Razas Pequeñas Alimento Seco Perro 1Kg (S/20.60 x Kg)',
+                price: 20.60,
+                discountedPrice: 19.57,
+                category: 'perro',
+                brand: 'Canbo',
+                image: 'productos/3.png',
+                hasDiscount: true
+            },
+            {
+                id: 12,
+                name: 'Canbo Dog Food Cachorros Sb Pollo Razas Pequeñas Alimento Seco Perro 7Kg (S/16.73 x Kg)',
+                price: 117.10,
+                discountedPrice: 111.24,
+                category: 'perro',
+                brand: 'Canbo',
+                image: 'productos/3.png',
+                hasDiscount: true
+            },
+            {
+                id: 13,
+                name: 'Nath Dog Puppy Mini Alimento Seco Perro 0.4Kg (S/52.25 x Kg)',
+                price: 20.90,
+                discountedPrice: 16.72,
+                category: 'perro',
+                brand: 'Nath',
+                image: 'productos/4.png',
+                hasDiscount: true
+            },
+            {
+                id: 14,
+                name: 'Nath Dog Puppy Mini Alimento Seco Perro 3Kg (S/27.30 x Kg)',
+                price: 81.90,
+                discountedPrice: 65.52,
+                category: 'perro',
+                brand: 'Nath',
+                image: 'productos/4.png',
+                hasDiscount: true
+            },
+            {
+                id: 15,
+                name: 'Nath Dog Puppy Mini Alimento Seco Perro 7Kg (S/24.27 x Kg)',
+                price: 169.90,
+                discountedPrice: 135.92,
+                category: 'perro',
+                brand: 'Nath',
+                image: 'productos/4.png',
+                hasDiscount: true
+            },
+            {
+                id: 16,
+                name: 'Nath Dog Adult Mini Alimento Seco Perro 0.4Kg (S/52.25 x Kg)',
+                price: 20.90,
+                discountedPrice: 16.72,
+                category: 'perro',
+                brand: 'Nath',
+                image: 'productos/5.png',
+                hasDiscount: true
+            },
+            {
+                id: 17,
+                name: 'Nath Dog Adult Mini Alimento Seco Perro 3Kg (S/27.30 x Kg)',
+                price: 81.90,
+                discountedPrice: 65.52,
+                category: 'perro',
+                brand: 'Nath',
+                image: 'productos/5.png',
+                hasDiscount: true
+            },
+            {
+                id: 18,
+                name: 'Nath Dog Adult Mini Alimento Seco Perro 7Kg (S/24.27 x Kg)',
+                price: 169.90,
+                discountedPrice: 135.92,
+                category: 'perro',
+                brand: 'Nath',
+                image: 'productos/5.png',
+                hasDiscount: true
+            },
+            {
+                id: 19,
+                name: 'Proteggo 3m 250 Mg para Perro 4.5 10 Kg (Cja X 1 Tab)',
+                price: 127.90,
+                discountedPrice: 63.95,
+                category: 'perro',
+                brand: 'Proteggo 3M',
+                image: 'productos/6.png',
+                hasDiscount: true
+            },
+            {
+                id: 20,
+                name: 'Gabrica Gotas para Ansiedad 30ml',
+                price: 54.90,
+                category: 'perro',
+                brand: 'Gabrica',
+                image: 'productos/7.png',
+                hasDiscount: false
+            },
+            {
+                id: 21,
+                name: 'Gabrica Agresividad Gotas 30 ml',
+                price: 54.90,
+                category: 'perro',
+                brand: 'Gabrica',
+                image: 'productos/8.png',
+                hasDiscount: false
+            },
+            {
+                id: 22,
+                name: 'Gabrica Stress Spray Spray para estrés 250ml',
+                price: 66.90,
+                category: 'perro',
+                brand: 'Gabrica',
+                image: 'productos/9.png',
+                hasDiscount: false
+            },
+            {
+                id: 23,
+                name: 'Bexter Colonia Para Perros Relax 240ml',
+                price: 32.90,
+		discountedPrice: 26.32,
+                category: 'perro',
+                brand: 'Bexter',
+                image: 'productos/10.png',
+                hasDiscount: true
+            },
+            {
+                id: 24,
+                name: 'Bexter Colonia Para Perros Alegria 240ml',
+                price: 32.90,
+		discountedPrice: 26.32,
+                category: 'perro',
+                brand: 'Bexter',
+                image: 'productos/11.png',
+                hasDiscount: true
+            },
+            {
+                id: 25,
+                name: 'Dragpharma Colonia Animal Health Puppy X 160 Ml',
+                price: 33.90,
+                category: 'perro',
+                brand: 'Dragpharma',
+                image: 'productos/12.png',
+                hasDiscount: false
+            },
+            {
+                id: 26,
+                name: 'Hairdo Cortauñas S',
+                price: 29.90,
+		discountedPrice: 23.92,
+                category: 'perro',
+                brand: 'Mpets',
+                image: 'productos/13.png',
+                hasDiscount: true
+            },
+            {
+                id: 27,
+                name: 'Furminator Nail Grinder Replacement',
+                price: 44.90,
+		discountedPrice: 33.67,
+                category: 'perro',
+                brand: 'Furminator',
+                image: 'productos/14.png',
+                hasDiscount: true
+            },
+            {
+                id: 28,
+                name: 'Furminator Dematting Tool Dog & Cat',
+                price: 130.90,
+		discountedPrice: 78.54,
+                category: ['perro', 'gato'],
+                brand: 'Furminator',
+                image: 'productos/15.png',
+                hasDiscount: true
+            },
+            {
+                id: 29,
+                name: 'Furminator Bathing Brush Dog & Cat',
+                price: 85.90,
+		discountedPrice: 64.42,
+                category: ['perro', 'gato'],
+                brand: 'Furminator',
+                image: 'productos/16.png',
+                hasDiscount: true
+            },
+            {
+                id: 30,
+                name: 'Mpets Limpiador De Oidos 118 Ml',
+                price: 14.90,
+		discountedPrice: 11.92,
+                category: 'perro',
+                brand: 'Mpets',
+                image: 'productos/17.png',
+                hasDiscount: true
+            },
+            {
+                id: 31,
+                name: 'Mpets Liquido Calmante De Ojos 118 Ml',
+                price: 14.90,
+		discountedPrice: 8.94,
+                category: 'perro',
+                brand: 'Mpets',
+                image: 'productos/18.png',
+                hasDiscount: true
+            },
+            {
+                id: 32,
+                name: 'Mpets Eliminador Manchas De Lagrimal 118 Ml',
+                price: 14.90,
+		discountedPrice: 11.92,
+                category: 'perro',
+                brand: 'Mpets',
+                image: 'productos/19.png',
+                hasDiscount: true
+            },
+            {
+                id: 33,
+                name: 'Accecan Cepillo extractor de pelo y masajeador',
+                price: 36.90,
+                category: ['perro', 'gato'],
+                brand: 'Acce Can',
+                image: 'productos/20.png',
+                hasDiscount: false
+            },
+            {
+                id: 34,
+                name: 'Dentalife Large Dog Treat Cuidado Oral Diario',
+                price: 26.90,
+                category: 'perro',
+                brand: 'Dentalife',
+                image: 'productos/21.png',
+                hasDiscount: false
+            },
+            {
+                id: 35,
+                name: 'Gabrica Dental Fresh Dog Whitening 500ml Limpieza Bucal Blanqueador',
+                price: 90.90,
+                category: 'perro',
+                brand: 'Gabrica',
+                image: 'productos/22.png',
+                hasDiscount: false
+            },
+            {
+                id: 36,
+                name: 'Dragpharma Gastroenteril (Suspensión Oral Metronidazol 2.5%) Frasco X 120 Ml',
+                price: 44.90,
+                category: ['perro', 'gato'],
+                brand: 'Dragpharma',
+                image: 'productos/23.png',
+                hasDiscount: false
+            },
+            {
+                id: 37,
+                name: 'Dragpharma Pet Otic (Solución De Limpieza Ótica) Frasco X 100Ml',
+                price: 19.90,
+                category: ['perro', 'gato'],
+                brand: 'Dragpharma',
+                image: 'productos/24.png',
+                hasDiscount: false
+            },
+            {
+                id: 38,
+                name: 'Dragpharma Rostrum Raza Grande (Enrofloxacina 150 Mg) Caja X 10 Tabletas',
+                price: 22.90,
+                category: 'perro',
+                brand: 'Dragpharma',
+                image: 'productos/25.png',
+                hasDiscount: false
+            },
+            {
+                id: 39,
+                name: 'Dragpharma Pichichi (Educador Sanitario Para Perros)',
+                price: 16.90,
+                category: 'perro',
+                brand: 'Dragpharma',
+                image: 'productos/26.png',
+                hasDiscount: false
+            },
+            {
+                id: 40,
+                name: 'Claws & Paws Baño de Gras Sintético + Repuesto de Grass',
+                price: 189.90,
+                category: 'perro',
+                brand: 'Claws & Paws',
+                image: 'productos/27.png',
+                hasDiscount: false
+            },
+            {
+                id: 41,
+                name: 'Mpets Puppy Training Pañal de entrenamiento (60X60Cm) (15 Unidades)',
+                price: 34.90,
+                category: 'perro',
+                brand: 'Mpets',
+                image: 'productos/28.png',
+                hasDiscount: false
+            },
+            {
+                id: 42,
+                name: 'Mpets Puppy Training Pañal de entrenamiento (60X60Cm) (30 Unidades)',
+                price: 49.90,
+                category: 'perro',
+                brand: 'Mpets',
+                image: 'productos/28.png',
+                hasDiscount: false
+            },
+            {
+                id: 43,
+                name: 'Mpets Puppy Training Pañal de entrenamiento (60X60Cm) (50 Unidades)',
+                price: 76.90,
+                category: 'perro',
+                brand: 'Mpets',
+                image: 'productos/28.png',
+                hasDiscount: false
+            },
+            {
+                id: 44,
+                name: 'Mpets Puppy Training Pañal de entrenamiento (60X60Cm) (100 Unidades)',
+                price: 139.90,
+                category: 'perro',
+                brand: 'Mpets',
+                image: 'productos/28.png',
+                hasDiscount: false
+            },
+            {
+                id: 45,
+                name: 'Toallitas humedas 15 x 20 cm olor a coco 40 und',
+                price: 9.90,
+                category: ['perro', 'gato', 'ave'],
+                brand: 'Mpets',
+                image: 'productos/29.png',
+                hasDiscount: false
+            },
+            {
+                id: 46,
+                name: 'Toallitas humedas 15 x 20 cm olor a palta 40 und',
+                price: 9.90,
+                category: ['perro', 'gato', 'ave'],
+                brand: 'Mpets',
+                image: 'productos/30.png',
+                hasDiscount: false
+            },
+            {
+                id: 47,
+                name: 'Toallitas humedas 15 x 20 cm olor a bamboo 40 und',
+                price: 9.90,
+                category: ['perro', 'gato', 'ave'],
+                brand: 'Mpets',
+                image: 'productos/31.png',
+                hasDiscount: false
+            },
+            {
+                id: 48,
+                name: 'Bolsas recoge fecas limon 8x15pcs',
+                price: 19.90,
+                category: 'perro',
+                brand: 'Mpets',
+                image: 'productos/32.png',
+                hasDiscount: false
+            },
+            {
+                id: 49,
+                name: 'Bexter Shampoo Intensive Action Para Perros – Piel Sensible 500ml',
+                price: 38.90,
+		discountedPrice: 31.12,
+                category: 'perro',
+                brand: 'Bexter',
+                image: 'productos/33.png',
+                hasDiscount: true
+            },
+            {
+                id: 50,
+                name: 'Bexter Shampoo Intensive Action Para Perros – Cuidado Total 500ml',
+                price: 38.90,
+		discountedPrice: 31.12,
+                category: 'perro',
+                brand: 'Bexter',
+                image: 'productos/34.png',
+                hasDiscount: true
+            },
+            {
+                id: 51,
+                name: 'Bexter Shampoo Intensive Action Para Perros – Anticaida 500ml',
+                price: 38.90,
+		discountedPrice: 31.12,
+                category: 'perro',
+                brand: 'Bexter',
+                image: 'productos/35.png',
+                hasDiscount: true
+            },
+            {
+                id: 52,
+                name: 'Natures Miracle Destructor De Orina Perro, 946ml',
+                price: 79.90,
+		discountedPrice: 55.93,
+                category: 'perro',
+                brand: 'Natures Miracle',
+                image: 'productos/36.png',
+                hasDiscount: true
+            },
+            {
+                id: 53,
+                name: 'Gabrica Fooey Spray Antimordeduras 4 Oz',
+                price: 42.90,
+                category: ['perro','gato'],
+                brand: 'Gabrica',
+                image: 'productos/37.png',
+                hasDiscount: false
+            },
+            {
+                id: 54,
+                name: 'Potty Training Stop Amazonia Senses 500 Ml',
+                price: 50.00,
+                category: 'perro',
+                brand: 'Amazonia Pet Care',
+                image: 'productos/38.png',
+                hasDiscount: false
+            },
+            {
+                id: 55,
+                name: 'Canbo Cuidado De Esterilizados / Sterilized Care Alimento Seco Gato 1KG (S/35.90 x KG)',
+                price: 35.90,
+		discountedPrice: 32.31,
+                category: 'gato',
+                brand: 'Canbo',
+                image: 'productos/39.png',
+                hasDiscount: true
+            },
+            {
+                id: 56,
+                name: 'Canbo Cuidado De Esterilizados / Sterilized Care Alimento Seco Gato 3KG (S/29.63 x KG)',
+                price: 88.90,
+		discountedPrice: 80.01,
+                category: 'gato',
+                brand: 'Canbo',
+                image: 'productos/39.png',
+                hasDiscount: true
+            },
+            {
+                id: 57,
+                name: 'Canbo Cuidado De Esterilizados / Sterilized Care Alimento Seco Gato 7KG (S/25.70 x KG)',
+                price: 179.90,
+		discountedPrice: 152.91,
+                category: 'gato',
+                brand: 'Canbo',
+                image: 'productos/39.png',
+                hasDiscount: true
+            },
+            {
+                id: 58,
+                name: 'Gran Plus Menu Gato Adulto Castrado Salmon Y Arroz 3Kg (S/26.97 x KG)',
+                price: 80.90,
+                category: 'gato',
+                brand: 'Gran Plus',
+                image: 'productos/40.png',
+                hasDiscount: false
+            },
+            {
+                id: 59,
+                name: 'Gran Plus Menu Gato Adulto Castrado Salmon Y Arroz 10Kg (S/22.29 x KG)',
+                price: 222.90,
+                category: 'gato',
+                brand: 'Gran Plus',
+                image: 'productos/40.png',
+                hasDiscount: false
+            },
+            {
+                id: 60,
+                name: 'Churu Sabor Pollo 60Gr',
+                price: 12.90,
+                category: 'gato',
+                brand: 'Churu',
+                image: 'productos/41.png',
+                hasDiscount: false
+            },
+            {
+                id: 61,
+                name: 'Churu Sabor Atún con Pollo 60Gr',
+                price: 12.90,
+                category: 'gato',
+                brand: 'Churu',
+                image: 'productos/42.png',
+                hasDiscount: false
+            },
+            {
+                id: 62,
+                name: 'Churu Sabor Pollo con Camarón 60Gr',
+                price: 12.90,
+                category: 'gato',
+                brand: 'Churu',
+                image: 'productos/43.png',
+                hasDiscount: false
+            },
+            {
+                id: 63,
+                name: 'Churu Sabor Atún con Ostiones 60Gr',
+                price: 12.90,
+                category: 'gato',
+                brand: 'Churu',
+                image: 'productos/44.png',
+                hasDiscount: false
+            },
+            {
+                id: 64,
+                name: 'Churu Sabor Atún con Salmón 60Gr',
+                price: 12.90,
+                category: 'gato',
+                brand: 'Churu',
+                image: 'productos/45.png',
+                hasDiscount: false
+            },
+            {
+                id: 65,
+                name: 'Churu Sabor Atún 60Gr',
+                price: 12.90,
+                category: 'gato',
+                brand: 'Churu',
+                image: 'productos/46.png',
+                hasDiscount: false
+            },
+            {
+                id: 66,
+                name: 'Leonardo Drink Pato 0.040 Kg',
+                price: 5.90,
+                category: 'gato',
+                brand: 'Leonardo',
+                image: 'productos/47.png',
+                hasDiscount: false
+            },
+            {
+                id: 67,
+                name: 'Leonardo Drink Ternera 0.040 Kg',
+                price: 5.90,
+                category: 'gato',
+                brand: 'Leonardo',
+                image: 'productos/48.png',
+                hasDiscount: false
+            },
+            {
+                id: 68,
+                name: 'Leonardo Drink Salmon 0.040 Kg',
+                price: 5.90,
+                category: 'gato',
+                brand: 'Leonardo',
+                image: 'productos/49.png',
+                hasDiscount: false
+            },
+            {
+                id: 69,
+                name: 'Arena Para Gato Klinkat Arena Para Gatos 5Kg (S/4.58 x KG)',
+                price: 22.90,
+                category: 'gato',
+                brand: 'Klinkat',
+                image: 'productos/50.png',
+                hasDiscount: false
+            },
+            {
+                id: 70,
+                name: 'Arena Para Gato Klinkat Arena Para Gatos 10Kg (S/3.79 x KG)',
+                price: 37.90,
+                category: 'gato',
+                brand: 'Klinkat',
+                image: 'productos/50.png',
+                hasDiscount: false
+            },
+            {
+                id: 71,
+                name: 'Arena Para Gato Klinkat Arena Para Gatos 20Kg (S/3.65 x KG)',
+                price: 72.90,
+                category: 'gato',
+                brand: 'Klinkat',
+                image: 'productos/50.png',
+                hasDiscount: false
+            },
+            {
+                id: 72,
+                name: 'Arena para gato Tkpet aglomerante aroma talco 10 KG (S/4.99 x KG)',
+                price: 49.90,
+                category: 'gato',
+                brand: 'Tkpet',
+                image: 'productos/51.png',
+                hasDiscount: false
+            },
+            {
+                id: 73,
+                name: 'Arena para gato Tkpet aglomerante aroma talco 20 KG (S/3.25 x KG)',
+                price: 69.90,
+                category: 'gato',
+                brand: 'Tkpet',
+                image: 'productos/51.png',
+                hasDiscount: false
+            },
+            {
+                id: 74,
+                name: 'Rascador Olympus 60x37x150 Cm 3 Pisos',
+                price: 449.90,
+		discountedPrice: 314.93,
+                category: 'gato',
+                brand: 'Mpets',
+                image: 'productos/52.png',
+                hasDiscount: true
+            },
+            {
+                id: 75,
+                name: 'Bunny Color Vino Con Beige Talla 3',
+                price: 125.90,
+		discountedPrice: 88.13,
+                category: 'gato',
+                brand: 'Pretty Pets',
+                image: 'productos/53.png',
+                hasDiscount: true
+            },
+            {
+                id: 76,
+                name: 'TK Pet Gimnasio Mand Lotus',
+                price: 429.90,
+		discountedPrice: 214.95,
+                category: 'gato',
+                brand: 'Tkpet',
+                image: 'productos/54.png',
+                hasDiscount: true
+            },
+            {
+                id: 77,
+                name: 'Bunny Color Marron Con Beige Talla 3',
+                price: 125.90,
+		discountedPrice: 88.13,
+                category: 'gato',
+                brand: 'Pretty Pets',
+                image: 'productos/55.png',
+                hasDiscount: true
+            },
+            {
+                id: 78,
+                name: 'Gimnasio Con Anclaje a Techo Come (Colores aleatorios)',
+                price: 319.90,
+		discountedPrice: 223.93,
+                category: 'gato',
+                brand: 'Tkpet',
+                image: 'productos/56.png',
+                hasDiscount: true
+            },
+            {
+                id: 79,
+                name: 'Rascat Rascador Rampa Gris',
+                price: 39.90,
+                category: 'gato',
+                brand: 'Tkpet',
+                image: 'productos/57.png',
+		hasDiscount: false
+            },
+            {
+                id: 80,
+                name: 'Versele Laga Grandes Periquitos Africanos Loro Parque Mix 1Kg (S/24.90 x KG)',
+                price: 24.90,
+                category: 'ave',
+                brand: 'Versele Laga',
+                image: 'productos/58.png',
+		hasDiscount: false
+            },
+	    {
+                id: 81,
+                name: 'Versele Laga Grandes Periquitos Africanos Loro Parque Mix 20Kg (S/19.06 x KG)',
+                price: 381.20,
+                category: 'ave',
+                brand: 'Versele Laga',
+                image: 'productos/58.png',
+		hasDiscount: false
+            },
+	    {
+                id: 82,
+                name: 'Versele Laga Nutribird B14 Periquitos 800Gr (S/29.60 x KG)',
+                price: 23.70,
+                category: 'ave',
+                brand: 'Versele Laga',
+                image: 'productos/59.png',
+		hasDiscount: false
+            },
+	    {
+                id: 83,
+                name: 'Versele Laga Nutribird B14 Periquitos 3Kg (S/33.60 x KG)',
+                price: 100.80,
+                category: 'ave',
+                brand: 'Versele Laga',
+                image: 'productos/59.png',
+		hasDiscount: false
+            },
+            // Añade más productos aquí
+        ];
+
+        const brands = [...new Set(products.map(p => p.brand))];
+let activeFilters = {
+    category: null,
+    brand: null,
+    discounted: false,
+    searchTerm: ''
+};
+
+// Función para renderizar productos
+function renderProducts(filteredProducts) {
+    const grid = document.getElementById('productsGrid');
+    grid.innerHTML = '';
+
+    filteredProducts.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.style.position = 'relative';
+
+        let priceHTML = product.hasDiscount ? 
+            `<p><span class="original-price">S/${product.price}</span> 
+             <span class="discounted-price">S/${product.discountedPrice}</span></p>` :
+            `<p>S/${product.price}</p>`;
+
+        if (product.hasDiscount) {
+            const discount = Math.round((1 - product.discountedPrice/product.price) * 100);
+            card.innerHTML += `<div class="discount-badge">-${discount}%</div>`;
+        }
+
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="product-image">
+            <h3>${product.name}</h3>
+            ${priceHTML}
+            <p>Marca: ${product.brand}</p>
+        `;
+
+        grid.appendChild(card);
+    });
+}
+
+// Función para filtrar productos
+function filterProducts(category = null) {
+    if (category === activeFilters.category) {
+        activeFilters.category = null;
+    } else {
+        activeFilters.category = category;
+    }
+    applyFilters();
+    updateActiveFiltersDisplay();
+}
+
+// Función para mostrar solo ofertas
+function showDiscountedOnly() {
+    activeFilters.discounted = !activeFilters.discounted;
+    applyFilters();
+    updateActiveFiltersDisplay();
+}
+
+// Función para filtrar por marca
+function filterByBrand(brand) {
+    if (brand === activeFilters.brand) {
+        activeFilters.brand = null;
+    } else {
+        activeFilters.brand = brand;
+    }
+    applyFilters();
+    updateActiveFiltersDisplay();
+}
+
+// Función para aplicar todos los filtros
+function applyFilters() {
+    let filteredProducts = products;
+
+    if (activeFilters.category) {
+        filteredProducts = filteredProducts.filter(product => 
+            product.category.includes(activeFilters.category)
+        );
+    }
+
+    if (activeFilters.brand) {
+        filteredProducts = filteredProducts.filter(product => product.brand === activeFilters.brand);
+    }
+
+    if (activeFilters.discounted) {
+        filteredProducts = filteredProducts.filter(product => product.hasDiscount);
+    }
+
+    if (activeFilters.searchTerm) {
+        filteredProducts = filteredProducts.filter(product => 
+            product.name.toLowerCase().includes(activeFilters.searchTerm.toLowerCase()) ||
+            product.brand.toLowerCase().includes(activeFilters.searchTerm.toLowerCase())
+        );
+    }
+
+    renderProducts(filteredProducts);
+}
+
+// Función para actualizar la visualización de filtros activos
+function updateActiveFiltersDisplay() {
+    const container = document.getElementById('activeFilters');
+    container.innerHTML = '';
+
+    if (activeFilters.category) {
+        addFilterBadge(activeFilters.category);
+    }
+    if (activeFilters.brand) {
+        addFilterBadge(activeFilters.brand);
+    }
+    if (activeFilters.discounted) {
+        addFilterBadge('Ofertas');
+    }
+}
+
+// Función para añadir badge de filtro
+function addFilterBadge(filterName) {
+    const badge = document.createElement('button');
+    badge.className = 'filter-button active';
+    badge.textContent = filterName;
+    badge.onclick = () => {
+        if (filterName === 'Ofertas') {
+            showDiscountedOnly();
+        } else if (brands.includes(filterName)) {
+            filterByBrand(filterName);
+        } else {
+            filterProducts(filterName);
+        }
+    };
+    document.getElementById('activeFilters').appendChild(badge);
+}
+
+function toggleMascotas() {
+    const dropdown = document.getElementById('mascotasDropdown');
+    dropdown.classList.toggle('show');
+}
+
+// Cierra el menú cuando se hace clic fuera
+window.onclick = function(event) {
+    if (!event.target.matches('.mascotas-dropdown a')) {
+        const dropdowns = document.getElementsByClassName('mascotas-content');
+        for (let dropdown of dropdowns) {
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        }
+    }
+};
+
+
+// Nueva función para resetear filtros
+function resetFilters() {
+    activeFilters = {
+        category: null,
+        brand: null,
+        discounted: false,
+        searchTerm: ''
+    };
+    document.getElementById('searchInput').value = '';
+    applyFilters();
+    updateActiveFiltersDisplay();
+}
+
+// Función para toggle del menú de marcas
+function toggleBrands() {
+    const dropdown = document.getElementById('brandsDropdown');
+    dropdown.classList.toggle('show');
+}
+
+// Función para mostrar/ocultar el menú de "Otras Mascotas"
+function toggleMascotas() {
+    const dropdown = document.getElementById('mascotasDropdown');
+    dropdown.classList.toggle('show');
+}
+
+// Cierra el menú de "Otras Mascotas" si se hace clic fuera
+window.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('mascotasDropdown');
+    const dropdownButton = document.querySelector('.mascotas-dropdown a');
+
+    // Verifica que el clic no sea en el menú o en el botón de "Otras Mascotas"
+    if (!dropdown.contains(event.target) && !dropdownButton.contains(event.target)) {
+        dropdown.classList.remove('show');
+    }
+});
+
+
+// Inicialización
+document.addEventListener('DOMContentLoaded', () => {
+    // Inicializar la lista de marcas
+    const brandsDropdown = document.getElementById('brandsDropdown');
+    brands.forEach(brand => {
+        const item = document.createElement('div');
+        item.className = 'brand-item';
+        item.textContent = brand;
+        item.onclick = () => {
+            filterByBrand(brand);
+            toggleBrands();
+        };
+        brandsDropdown.appendChild(item);
+    });
+
+    // Inicializar barra de búsqueda
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        activeFilters.searchTerm = e.target.value;
+        applyFilters();
+    });
+
+    // Renderizar productos iniciales
+    renderProducts(products);
+});
+
+// Cerrar el menú de marcas cuando se hace clic fuera
+window.onclick = function(event) {
+    if (!event.target.matches('.brands-dropdown a')) {
+        const dropdowns = document.getElementsByClassName('brands-content');
+        for (let dropdown of dropdowns) {
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        }
+    }
+}
+</script>
+</body>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.png" alt="PetSupplies Logo" class="footer-logo">
+            </div>
+            <div class="footer-section">
+                <h3>CONTACTO</h3>
+                <p>Instagram - @pet.supplies.onlinee</p>
+                <p>Facebook - Pet Supplies Online</p>
+                <p>Web</p>
+            </div>
+            <div class="footer-section">
+                <h3>CORREO</h3>
+                <p>petsuppliesonline@gmail.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>UBICACIÓN</h3>
+                <p>Av. La Fontana 750,</p>
+                <p>La Molina</p>
+            </div>
+            <div class="footer-section">
+                <h3>¡VISITA NUESTRAS REDES!</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/pet.supplies.onlinee">Instagram</a>
+                    <a href="https://www.facebook.com/profile.php?id=61567874892106">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</html>

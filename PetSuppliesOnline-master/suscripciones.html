@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PET SUPPLIES ONLINE 🐶🐱</title>
+    <link rel="icon" href="icono.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+	    margin: 0 auto;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+	    overflow-x: hidden;
+        }
+
+body, html {
+overflow-x: hidden;
+}
+
+        main {
+            flex: 1;
+        }
+
+        nav {
+            background-color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #4a90e2;
+        }
+
+	.header-banner {
+    		background-color: white;
+    		background-image: url('/api/placeholder/1200/200');
+    		background-size: cover;
+    		background-position: center;
+    		width: 100vw;
+		height: auto;
+    		position: relative;
+    		margin-left: calc(50% - 50vw);
+    		text-align: center;
+    		transition: transform 0.3s ease; /* Animación para suavizar el cambio */
+	}
+
+        .search-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 1.1rem;
+        }
+
+        .filters-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-button.active {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .logo {
+            max-width: 200px;
+            margin: 1rem auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+.mascotas-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.mascotas-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    z-index: 1;
+    padding: 0.5rem;
+}
+
+.mascotas-content.show {
+    display: block;
+}
+
+.mascota-item {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.mascota-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .discounted-price {
+            color: #ff4444;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .brands-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .brands-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            z-index: 1;
+            padding: 0.5rem;
+        }
+
+        .brands-content.show {
+            display: block;
+        }
+
+        .brand-item {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        .brand-item:hover {
+            background-color: #f0f0f0;
+        }
+	.footer {
+            background-color: #f8f4e9;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .footer-logo {
+            width: 200px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h3 {
+            color: #1a472a;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-section p {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: #1a472a;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #4a90e2;
+        }
+
+        .subscription-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subscription-title {
+            color: #1a472a;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subscription-price {
+            font-size: 3rem;
+            color: #4a90e2;
+            margin: 1rem 0;
+        }
+
+        .subscription-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .subscription-features li {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+
+        .subscribe-button {
+            background: #1a472a;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .subscribe-button:hover {
+            background: #2c5d3f;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .store-button {
+            height: 40px;
+        }
+	
+.about-hero, .about-section {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+}
+
+	.video-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.video-container video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 1024px) {
+    .header-banner {
+        transform: scale(1.05); /* Incremento de tamaño del 20% */
+    }
+}
+
+@media (min-width: 1440px) {
+    .header-banner {
+        transform: scale(1.035); /* Incremento de tamaño hasta el 50% */
+    }
+}
+
+/* Mantener el tamaño en 100vw para tamaños de pantalla menores */
+@media (max-width: 1023px) {
+    .header-banner {
+        transform: scale(1.16);
+    }
+}
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-logo {
+                margin: 0 auto 1rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" onclick="resetFilters()">Home</a></li>
+<li>
+    <div class="mascotas-dropdown">
+        <a a href="index.html" onclick="toggleMascotas()">Mascotas</a>
+        <div id="mascotasDropdown" class="mascotas-content">
+            <div class="mascota-item" onclick="filterProducts('perro')">Perros</div>
+            <div class="mascota-item" onclick="filterProducts('gato')">Gatos</div>
+            <div class="mascota-item" onclick="filterProducts('ave')">Aves</div>
+            <div class="mascota-item" onclick="filterProducts('hamster')">Hámsteres</div>
+            <div class="mascota-item" onclick="filterProducts('serpiente')">Serpientes</div>
+            <div class="mascota-item" onclick="filterProducts('pez')">Peces</div>
+            <!-- Agrega más opciones según sea necesario -->
+        </div>
+    </div>
+</li>
+	
+
+            <li><div class="brands-dropdown">
+                <a a href="index.html" onclick="toggleBrands()">Marcas</a>
+                <div id="brandsDropdown" class="brands-content">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div></li>
+
+            <li><a a href="index.html" onclick="showDiscountedOnly()">Ofertas</a></li>
+            <li><a href="conocenos.html">Conócenos</a></li>
+            <li><a href="suscripciones.html">Suscripciones</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+    <div class="header-banner">
+        <div class="header-banner-content">
+        <img src="banner.png" alt="Logo" class="header-banner">
+    </div>
+    </div>
+
+        <div class="subscription-card">
+            <h2 class="subscription-title">PettyPlus</h2>
+            <div class="subscription-price">S/19.90/mes</div>
+            <ul class="subscription-features">
+                <li>✨ Envíos gratis en todos tus pedidos</li>
+                <li>🎁 10% de descuento adicional en todos los productos</li>
+                <li>🎯 Acceso anticipado a ofertas especiales</li>
+                <li>⚡ Atención prioritaria al cliente</li>
+                <li>⏱️ Programa compras recurrentes</li>
+            </ul>
+            <button class="subscribe-button">Suscribirse Ahora</button>
+        </div>
+
+        <div class="store-buttons">
+            <img src="appstore.png" alt="App Store" class="store-button">
+            <img src="playstore.webp" alt="Google Play" class="store-button">
+        </div>
+    </main>
+<script>
+	// Limpiar filtros
+	function clearAllFilters() {
+    		activeFilters = {
+       			category: null,
+        		brand: null,
+       			discounted: false,
+       			searchTerm: ''
+   		};
+   		applyFilters();
+    		updateActiveFiltersDisplay();
+	}
+
+        // Datos de ejemplo
+        const products = [
+            {
+                id: 1,
+                name: 'Alimento Premium Perro',
+                price: 29.99,
+                discountedPrice: 24.99,
+                category: 'perro',
+                brand: 'Royal Canin',
+                image: '/api/placeholder/250/200',
+                hasDiscount: true
+            },
+            {
+                id: 2,
+                name: 'Arena para Gatos',
+                price: 19.99,
+                category: 'gato',
+                brand: 'Cat Clean',
+                image: '/api/placeholder/250/200',
+                hasDiscount: false
+            },
+            {
+                id: 3,
+                name: 'Semillas Premium Aves',
+                price: 9.99,
+                discountedPrice: 7.99,
+                category: 'ave',
+                brand: 'Bird Life',
+                image: '/api/placeholder/250/200',
+                hasDiscount: true
+            },
+            // Añade más productos aquí
+        ];
+
+        const brands = [...new Set(products.map(p => p.brand))];
+        let activeFilters = {
+            category: null,
+            brand: null,
+            discounted: false,
+            searchTerm: ''
+        };
+
+        // Función para renderizar productos
+        function renderProducts(filteredProducts) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            filteredProducts.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.style.position = 'relative';
+
+                let priceHTML = product.hasDiscount ? 
+                    `<p><span class="original-price">$${product.price}</span> 
+                     <span class="discounted-price">$${product.discountedPrice}</span></p>` :
+                    `<p>$${product.price}</p>`;
+
+                if (product.hasDiscount) {
+                    const discount = Math.round((1 - product.discountedPrice/product.price) * 100);
+                    card.innerHTML += `<div class="discount-badge">-${discount}%</div>`;
+                }
+
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <h3>${product.name}</h3>
+                    ${priceHTML}
+                    <p>Marca: ${product.brand}</p>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Función para filtrar productos
+        function filterProducts(category = null) {
+            if (category === activeFilters.category) {
+                activeFilters.category = null;
+            } else {
+                activeFilters.category = category;
+            }
+            applyFilters();
+            updateActiveFiltersDisplay();
+        }
+
+        // Función para mostrar solo ofertas
+        function showDiscountedOnly() {
+            activeFilters.discounted = !activeFilters.discounted;
+            applyFilters();
+            updateActiveFiltersDisplay();
+        }
+
+        // Función para filtrar por marca
+        function filterByBrand(brand) {
+            if (brand === activeFilters.brand) {
+                activeFilters.brand = null;
+            } else {
+                activeFilters.brand = brand;
+            }
+            applyFilters();
+            updateActiveFiltersDisplay();
+        }
+
+        // Función para aplicar todos los filtros
+        function applyFilters() {
+            let filteredProducts = products;
+
+            if (activeFilters.category) {
+                filteredProducts = filteredProducts.filter(p => p.category === activeFilters.category);
+            }
+
+            if (activeFilters.brand) {
+                filteredProducts = filteredProducts.filter(p => p.brand === activeFilters.brand);
+            }
+
+            if (activeFilters.discounted) {
+                filteredProducts = filteredProducts.filter(p => p.hasDiscount);
+            }
+
+            if (activeFilters.searchTerm) {
+                filteredProducts = filteredProducts.filter(p => 
+                    p.name.toLowerCase().includes(activeFilters.searchTerm.toLowerCase()) ||
+                    p.brand.toLowerCase().includes(activeFilters.searchTerm.toLowerCase())
+                );
+            }
+
+            renderProducts(filteredProducts);
+        }
+
+        // Función para actualizar la visualización de filtros activos
+        function updateActiveFiltersDisplay() {
+            const container = document.getElementById('activeFilters');
+            container.innerHTML = '';
+
+            if (activeFilters.category) {
+                addFilterBadge(activeFilters.category);
+            }
+            if (activeFilters.brand) {
+                addFilterBadge(activeFilters.brand);
+            }
+            if (activeFilters.discounted) {
+                addFilterBadge('Ofertas');
+            }
+        }
+
+        // Función para añadir badge de filtro
+        function addFilterBadge(filterName) {
+            const badge = document.createElement('button');
+            badge.className = 'filter-button active';
+            badge.textContent = filterName;
+            badge.onclick = () => {
+                if (filterName === 'Ofertas') {
+                    showDiscountedOnly();
+                } else if (brands.includes(filterName)) {
+                    filterByBrand(filterName);
+                } else {
+                    filterProducts(filterName);
+                }
+            };
+            document.getElementById('activeFilters').appendChild(badge);
+        }
+
+	// Nueva función para resetear filtros
+        function resetFilters() {
+            activeFilters = {
+                category: null,
+                brand: null,
+                discounted: false,
+                searchTerm: ''
+            };
+            document.getElementById('searchInput').value = '';
+            applyFilters();
+            updateActiveFiltersDisplay();
+        }
+
+        // Función para toggle del menú de marcas
+        function toggleBrands() {
+            const dropdown = document.getElementById('brandsDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar la lista de marcas
+            const brandsDropdown = document.getElementById('brandsDropdown');
+            brands.forEach(brand => {
+                const item = document.createElement('div');
+                item.className = 'brand-item';
+                item.textContent = brand;
+                item.onclick = () => {
+                    filterByBrand(brand);
+                    toggleBrands();
+                };
+                brandsDropdown.appendChild(item);
+            });
+
+            // Inicializar barra de búsqueda
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                activeFilters.searchTerm = e.target.value;
+                applyFilters();
+            });
+
+            // Renderizar productos iniciales
+            renderProducts(products);
+        });
+
+        // Cerrar el menú de marcas cuando se hace clic fuera
+        window.onclick = function(event) {
+            if (!event.target.matches('.brands-dropdown a')) {
+                const dropdowns = document.getElementsByClassName('brands-content');
+                for (let dropdown of dropdowns) {
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+// Función para mostrar/ocultar el menú de "Otras Mascotas"
+function toggleMascotas() {
+    const dropdown = document.getElementById('mascotasDropdown');
+    dropdown.classList.toggle('show');
+}
+
+// Cierra el menú de "Otras Mascotas" si se hace clic fuera
+window.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('mascotasDropdown');
+    const dropdownButton = document.querySelector('.mascotas-dropdown a');
+
+    // Verifica que el clic no sea en el menú o en el botón de "Otras Mascotas"
+    if (!dropdown.contains(event.target) && !dropdownButton.contains(event.target)) {
+        dropdown.classList.remove('show');
+    }
+});
+
+function toggleMascotas() {
+    const dropdown = document.getElementById('mascotasDropdown');
+    dropdown.classList.toggle('show');
+}
+
+// Cierra el menú cuando se hace clic fuera
+window.onclick = function(event) {
+    if (!event.target.matches('.mascotas-dropdown a')) {
+        const dropdowns = document.getElementsByClassName('mascotas-content');
+        for (let dropdown of dropdowns) {
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        }
+    }
+};
+
+
+    </script>
+
+</body>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.png" alt="PetSupplies Logo" class="footer-logo">
+            </div>
+            <div class="footer-section">
+                <h3>CONTACTO</h3>
+                <p>Instagram - @pet.supplies.onlinee</p>
+                <p>Facebook - Pet Supplies Online</p>
+                <p>Web</p>
+            </div>
+            <div class="footer-section">
+                <h3>CORREO</h3>
+                <p>petsuppliesonline@gmail.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>UBICACIÓN</h3>
+                <p>Av. La Fontana 750,</p>
+                <p>La Molina</p>
+            </div>
+            <div class="footer-section">
+                <h3>¡VISITA NUESTRAS REDES!</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/pet.supplies.onlinee">Instagram</a>
+                    <a href="https://www.facebook.com/profile.php?id=61567874892106">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</html>
